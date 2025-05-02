@@ -1,40 +1,56 @@
 #board {
   display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #2196F3;
-  padding: 10px
-}
-
-.cell {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  height: 25vmin;
-  text-align: center;
-}
-
-#bottombar {
-  height: 5vh;
+  grid-template-columns: repeat(3, 1fr);
+  background: linear-gradient(to right, #848cd6, #4a6fad);
+  padding: 10px;
+  border-radius: 12px;
+  margin: 30px auto;
+  max-width: 85vmin;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  gap: 10px;
 }
 
 #instructions {
-  height: 5vh;
-  background-color: white;
-  padding: 0px;
-  margin: 0px;
+  height: auto;
+  background: linear-gradient(45deg, #fdfbfb, #ebedee);
+  padding: 15px 20px;
+  margin: 20px auto;
   text-align: center;
-  border: 1px solid black;
+  border: 2px solid #dcdcdc;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  max-width: 85vmin;
+  font-weight: 600;
+  color: #34495e;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+#bottombar {
+  max-width: 85vmin;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 #bottombar button {
-  width: 50%;
-  /* height: 100%; */
-  margin: 0;
-  padding: 0;
-  position: relative;
-  float: left;
-  font-size: 2vw
+  flex: 1;
+  padding: 12px 0;
+  font-size: 1.2rem;
+  background: linear-gradient(to right, #16a085, #1abc9c);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+#bottombar button:hover {
+  background: linear-gradient(to right, #1abc9c, #16a085);
+  transform: translateY(-2px);
 }
 
 html,
@@ -42,6 +58,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #bdc3c7, #2c3e50);
 }
 
-.playable { background-color: red;}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

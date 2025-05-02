@@ -45,7 +45,21 @@ class App extends React.Component<Props, GameState> {
   newGame = async () => {
     const response = await fetch('/newgame');
     const json = await response.json();
-    this.setState({ cells: json['cells'] });
+    this.setState({ 
+      cells: json['cells'],
+      currentPlayer: json['currentPlayer'],
+      winner: json['winner'] 
+    });
+  }
+
+  undo = async () => {
+    const response = await fetch('/undo');
+    const json = await response.json();
+    this.setState({ 
+      cells: json['cells'],
+      currentPlayer: json['currentPlayer'],
+      winner: json['winner'] 
+    });
   }
 
   /**
@@ -61,7 +75,11 @@ class App extends React.Component<Props, GameState> {
       e.preventDefault();
       const response = await fetch(`/play?x=${x}&y=${y}`)
       const json = await response.json();
-      this.setState({ cells: json['cells'] });
+      this.setState({ 
+        cells: json['cells'],
+        currentPlayer: json['currentPlayer'],
+        winner: json['winner'] 
+      });
     }
   }
 
@@ -115,13 +133,20 @@ class App extends React.Component<Props, GameState> {
      */
     return (
       <div>
+        <div id="instructions">
+          {this.state.winner ? 
+            `Winner: ${this.state.winner}` :
+            this.state.cells.every(cell => !cell.playable) ?
+              'It\'s a Tie!' :
+              `Current Player: ${this.state.currentPlayer}`}
+        </div>
         <div id="board">
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
         </div>
         <div id="bottombar">
           <button onClick={/* get the function, not call the function */this.newGame}>New Game</button>
           {/* Exercise: implement Undo function */}
-          <button>Undo</button>
+          <button onClick={this.undo}>Undo</button>
         </div>
       </div>
     );

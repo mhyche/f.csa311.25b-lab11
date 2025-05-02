@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cell } from './game';
+import './Cell.css';
 
 interface Props {
   cell: Cell
